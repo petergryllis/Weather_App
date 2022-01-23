@@ -1,7 +1,7 @@
 :root {
-    --Background: rgb(113, 113, 172);
-    --HeaderBox: rgb(105, 185, 105);
-    --FontColor: rgb(63, 56, 56);
+    --Background: rgb(77, 77, 92);
+    --HeaderBox: rgb(64, 98, 161);
+    --FontColor: rgb(44, 39, 39);
 }
 
 * {
@@ -22,8 +22,148 @@ main {
 
 #HeaderBox {
     width: 100%;
-    background: rgb(13, 221, 93);
+    background: rgb(167, 42, 11);
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#head-title {
+    color: white;
+    padding: 2%;
+}
+
+#search-container {
+    width: 30%;
+    height: 100%;
+    font-size: 2rem;
+    margin-left: 12px;
+}
+
+#search-container div {
+    margin-top: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+
+#search-for-city-container {
+    color:rgb(64, 98, 161);
+}
+
+#city-search-title {
+    font-size: 2rem;
+}
+
+#search-container-for-city-form {
+    width: 100%;
+    display: block;
+}
+
+#search-city-form {
+    width: 40%;
+    font-size: 1rem;
+}
+
+#search-city-submit-button {
+    width: 40%;
+    background: rgb(77, 77, 92);
+    color: white;
+    border:rgb(167, 42, 11);
+    border-radius: 1px;
+    font-size: 1rem;
+}
+
+#saved-searches {
+    margin-top: 5%;
+    height: auto;
+    width: 100%;
+    background: greenyellow;
+}
+
+#current-weather-container {
+    border: 3px solid blue;
+    margin-top: 3%;
+    width: 100%;
+    height: 40%;
+    margin-left: 5%;
+    margin-right: 3%;
+}
+
+#current-weather-title-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#current-weather-title {
+    padding-top: 5%;
+    margin-bottom: 10%;
+    text-align: center;
+    font-size: 1rem;
+}
+
+#todays-image {
+    height: 35%;
+    width: 35%;
+    display: none;
+}
+
+
+#current-weather-information {
+    height: auto;
+    margin-left: 2%;
+    line-height: 1.5rem;
+}
+
+#uv-index {
+    padding-left: 5%;
+    padding-right: 5%;
+    border-radius: 3px;
+}
+
+#forecast-container {
+    position: relative;
+    top: 60%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.forecast-square {
+    border: 2px solid blue;
+    text-align: center;
+    width: 15%;
+    margin: 2%;
+    background:rgb(77, 77, 92);
+    color: white;
+    border-radius: 2px;
+}
+
+.forecast-date {
+    line-height: 3rem;
+    font-size: 1rem;
+}
+.forecast-temp {
+    line-height: 3rem;
+    font-size: 1rem;
+}
+
+.forecast-wind {
+    line-height: 3rem;
+    font-size: 1rem;
+}
+
+.forecast-humidity {
+    line-height: 3rem;
+    font-size: 1rem;
+}
+
+.forecast-pic {
+    width: 25%;
+    height: 20%;
+}
+
+.forecast-humidity {
+    padding-bottom: 20%;
 }
