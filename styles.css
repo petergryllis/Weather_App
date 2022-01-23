@@ -1,0 +1,29 @@
+:root {
+    --Background: rgb(113, 113, 172);
+    --HeaderBox: rgb(105, 185, 105);
+    --FontColor: rgb(63, 56, 56);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+#HeaderBox {
+    width: 100%;
+    background: rgb(13, 221, 93);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
