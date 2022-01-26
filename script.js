@@ -144,20 +144,19 @@ function getForecast(data) {
         TemperatureForecasted.classList.add("forecast-temp");
         
         
-        // get the wind for each day
-        let windSpeed = data.daily[i].wind_speed;
-        let WindForecasted = document.createElement("p");
-        WindForecasted.textContent = "Wind: " + windSpeed + " KM/H";
-        forecastCard.appendChild(WindForecasted);
-        WindForecasted.classList.add("forecast-wind");
-        
-        
         // get the humidity for each day
         let API_humidity = data.daily[i].humidity;
         let HumidityForecasted = document.createElement("p");
         HumidityForecasted.textContent = "Humidity: " + API_humidity + "%";
         forecastCard.appendChild(HumidityForecasted);
         HumidityForecasted.classList.add("forecast-humidity");
+
+        // get the wind for each day
+        let windSpeed = data.daily[i].wind_speed;
+        let WindForecasted = document.createElement("p");
+        WindForecasted.textContent = "Wind: " + windSpeed + " KM/H";
+        forecastCard.appendChild(WindForecasted);
+        WindForecasted.classList.add("forecast-wind");
     }
 
     console.log(data);
