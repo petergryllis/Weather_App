@@ -13,15 +13,15 @@ CitySelectButton.addEventListener("click", function() {
 
 //Set up function to take city entered and run through API
 function getCity(city) {
-    let API_URL_LINK = 'https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}'
+    let API_URL_LINK = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
     getDATA(API_URL_LINK);
 }
 
 
 //Set up function to obtain the weather data from API
 
-function getDATA(API_URL_Link) {
-    fetch(API_URL_Link)
+function getDATA(URL_Link) {
+    fetch(URL_Link)
     .then(function(response) {
        if (response.ok) {
         response.json()
@@ -31,13 +31,13 @@ function getDATA(API_URL_Link) {
                 let currentWeatherTitle = document.getElementById("current-weather-title");
                 let name = data.name;
                 currentWeatherTitle.textContent = name
-                
                 let latitude = data.coord.lat;
                 let longitude = data.coord.lon;
 
                 let cityUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
 
-            
+
+
                 fetch(cityUrl)
                 .then(function(response) {
                     response.json()
@@ -57,8 +57,8 @@ function getDATA(API_URL_Link) {
             }
             getCityData(data);
         });
-        if (city_name != "") {
-            createSavedList(city_name);
+        if (city_selection != "") {
+            
         }
        }
     });
@@ -83,13 +83,13 @@ function displayData(weatherData) {
     let currentHumidity = weatherData.current.humidity;
     let uvi = weatherData.current.uvi;
 
-    // Assign the data obtained from the API to the HTML values which are obtained from the to the api
+    // Assign the data obtained from the API to the HTML values which are displayed
     temperature.textContent = "Temperature: " + currentTemp + " C";
     wind.textContent = "Wind: " + windSpeed + " km/hr";
     humidity.textContent = "Humidity: " + currentHumidity + " %";
     uvIndex.textContent = uvi;
 
-    // Filter color codes based on UV value
+    // Filter colour codes based on UV value and output a colour of either green, yellow or red
     if (uvi <= 4 ) {
         uvIndex.style.background = "green";
     } else if (uvi > 4 && uvi <= 8) {
@@ -107,46 +107,59 @@ function getForecast(data) {
     // get the card from the DOM'
     let forecastContainer = document.getElementById("forecast-container");
     forecastContainer.innerHTML = "";
-    // Get the next 5 days
+    
+    
+    
+    // Get the next 5 days. Commence count from 1 to by pass the first days forecast
     for (let i=1; i<5; i++) {
         let forecastCard = document.createElement("div");
         forecastCard.classList.add("forecast-square");
         forecastContainer.appendChild(forecastCard);
-        // get the date for each day
-        let dateTime = new Date(data.daily[i].dt * 1000).toLocaleString();
-        dateTime = dateTime.split(",");
-        dateTime = dateTime[0];
+      
+      
+        // get the date for each day. Approach below similar for icon, temp, wind and humidity
+        let dateAllocated = new Date(data.daily[i].dt * 1000).toLocaleString();
+        dateAllocated = dateAllocated.split(",");
+        dateAllocated = dateAllocated[0];
         let forecastDate = document.createElement("h1");
         forecastDate.classList.add("forecast-date");
-        forecastDate.textContent = dateTime;
+        forecastDate.textContent = dateAllocated;
         forecastCard.appendChild(forecastDate);
-        // Get the icon for the weather
+
+
+
+        // Get the icon for the weather using API link
         let icon = data.daily[i].weather[0].icon;
         let forecastIcon = document.createElement("img");
         forecastIcon.classList.add("forecast-icon");
         forecastIcon.src = `http://openweathermap.org/img/wn/${icon}@2x.png`
         forecastCard.appendChild(forecastIcon);
+       
+       
         // get the temperature for each day
-        let temperature = data.daily[i].feels_like.day;
-        let forecastTemperature = document.createElement("p");
-        forecastTemperature.textContent = "Temperature: " + temperature + " C";
-        forecastCard.appendChild(forecastTemperature);
-        forecastTemperature.classList.add("forecast-temp");
+        let API_temperature = data.daily[i].feels_like.day;
+        let TemperatureForecasted = document.createElement("p");
+        TemperatureForecasted.textContent = "Temperature: " + API_temperature + " C";
+        forecastCard.appendChild(TemperatureForecasted);
+        TemperatureForecasted.classList.add("forecast-temp");
+        
+        
         // get the wind for each day
-        let wind = data.daily[i].wind_speed;
-        let forecastWind = document.createElement("p");
-        forecastWind.textContent = "Wind: " + wind + " KM/H";
-        forecastCard.appendChild(forecastWind);
-        forecastWind.classList.add("forecast-wind");
+        let windSpeed = data.daily[i].wind_speed;
+        let WindForecasted = document.createElement("p");
+        WindForecasted.textContent = "Wind: " + windSpeed + " KM/H";
+        forecastCard.appendChild(WindForecasted);
+        WindForecasted.classList.add("forecast-wind");
+        
+        
         // get the humidity for each day
-        let humidity = data.daily[i].humidity;
-        let forecastHumidity = document.createElement("p");
-        forecastHumidity.textContent = "Humidity: " + humidity + "%";
-        forecastCard.appendChild(forecastHumidity);
-        forecastHumidity.classList.add("forecast-humidity");
+        let API_humidity = data.daily[i].humidity;
+        let HumidityForecasted = document.createElement("p");
+        HumidityForecasted.textContent = "Humidity: " + API_humidity + "%";
+        forecastCard.appendChild(HumidityForecasted);
+        HumidityForecasted.classList.add("forecast-humidity");
     }
-    // get the date for each day
-    // get the icons
+
     console.log(data);
-    // add each day to a card to be displayed at the bottom of the page
+    
 }

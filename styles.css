@@ -120,6 +120,7 @@ main {
     padding-left: 5%;
     padding-right: 5%;
     border-radius: 3px;
+    max-width: 30px;
 }
 
 #forecast-container {
