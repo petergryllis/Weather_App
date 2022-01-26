@@ -1,12 +1,14 @@
 let city_selection = "";
-const API_KEY = "d44bc17c2091a2e0a516eae08c6d721d";
+const API_KEY = "14ec96a21c589975c0ca5f2135b87903";
 
 let CitySelectButton = document.getElementById("search-city-submit-button");
 CitySelectButton.addEventListener("click", function() {
     let InputofCity = document.getElementById("search-city-form");
     city_selection = InputofCity.value;
+    
     getCity(InputofCity.value);
     InputofCity.value = "";
+   
 });
 
 //Set up function to take city entered and run through API
@@ -18,24 +20,24 @@ function getCity(city) {
 
 //Set up function to obtain the weather data from API
 
-function getDATA(URL_Link) {
-    fetch(URL_Link)
+function getDATA(API_URL_Link) {
+    fetch(API_URL_Link)
     .then(function(response) {
        if (response.ok) {
         response.json()
-        .then(function(data) {
+        .then(function(data) {  
             function getCityData(data) {
                 console.log(data);
                 let currentWeatherTitle = document.getElementById("current-weather-title");
                 let name = data.name;
                 currentWeatherTitle.textContent = name
                 
-                let cityUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
-
                 let latitude = data.coord.lat;
                 let longitude = data.coord.lon;
 
+                let cityUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
 
+            
                 fetch(cityUrl)
                 .then(function(response) {
                     response.json()
